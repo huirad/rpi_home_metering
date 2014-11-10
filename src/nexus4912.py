@@ -15,7 +15,7 @@ import rrdtool
 
 
 #auslesen der Nexusdaten mit te923con und Aufbereitung der Daten zur Weiterverarbeitung
-te923con = os.popen("./te923con")  
+te923con = os.popen("./te923con -iU")  
 data = te923con.read()
 data=data.strip()
 fields=data.split(":")

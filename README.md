@@ -10,6 +10,24 @@ Introduction
 Requirements
 ============
 
+Functional Requirements
+-----------------------
+* Collect Temperature and Humidity readings from my home weather station
+* Collect Temperature and Humidity readings from additional sensors
+* Store Temperature and Humidity readings
+* Make Temperature and Humidity available on the internet through a web server
+
+Non-Functional Requirements
+---------------------------
+* Use already available Hardware: Raspberry Pi and the TFA Nexus weather station
+* Re-use existing software: Have a bit fun in coding but do not re-invent the wheel
+
+Personal Objectives
+-------------------
+* Improve my Python knowledge
+* Improve my Raspberry Pi knowledge
+
+
 
 System Architecture
 ===================
