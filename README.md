@@ -29,7 +29,18 @@ Personal Objectives
 
 System Architecture
 ===================
+The system architecture is shown in the following deployment diagram.
+* The Raspberry Pi collects Temperature and Humidity data from various sensors such as the TFA Nexus weather station
+  * Sensor data are stored in a RRD archives
+  * Sensor data are made available via a web server
+* The Nexus TFA weather station 
+  * has a built-in DCF77 time receiver and a Temperature/Humidity sensor
+  * receives Temperature/Humidity data from up to 5 external sensors via 433MHz RF
+* The DSL router 
+  * makes the Raspberry Pi web server available to the internet via port forwarding
+  * provides its internet IP address to a dynamic DNS service to ease accessibility
 
+![system architecture deployment][system architecture deployment]
 
 Software Architecture
 =====================
@@ -40,6 +51,7 @@ Summary/Lessons Learned
 * Python has a built-in webserver.
 * Both Python2 and Python3 are pre-installed on the Raspberry Pi.
 * The Python2/Python3 schism still exists. Not all packages are available easily on Python3.
+
 * RRDTool is great to store and graph log data.
 
 TO DO
@@ -163,3 +175,4 @@ Bei StartUp
 
 
 
+[system architecture deployment]: https://raw.githubusercontent.com/huirad/rpi_home_metering/master/doc/SystemArchitecture_Deployment.png
