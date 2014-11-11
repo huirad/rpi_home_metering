@@ -47,22 +47,25 @@ Software Architecture
 
 Summary/Lessons Learned
 =======================
-* Python is great.
-* Python has a built-in webserver.
-* Both Python2 and Python3 are pre-installed on the Raspberry Pi.
-* The Python2/Python3 schism still exists. 
-  * Not all packages are available easily on Python3.
+<ul>
+<li> Python is great.
+<li> Python has a built-in webserver.
+<li> Both Python2 and Python3 are pre-installed on the Raspberry Pi.
+<li> The Python2/Python3 schism still exists. E.g. not all packages are available easily on Python3.
+</ul>
 
-* RRDTool is great to store and graph log data.
+<ul>
+<li> RRDTool is great to store and graph log data.
+</ul>
 
-TO DO
+:construction: TO DO
 =====
 * Improve robustness against bad sensor data
   * te923con *-iU* to generate "unknown" values for rrdtool
 * Dew point calculation
 
 
-Open Issues
+:warning: Open Issues
 ===========
 * Internet Security: Is the python webserver vulnerable?
   * Solution: Disable port forwarding at router. FTP push static website to external server
