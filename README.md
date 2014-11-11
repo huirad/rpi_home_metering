@@ -27,8 +27,6 @@ Personal Objectives
 * Improve my Python knowledge
 * Improve my Raspberry Pi knowledge
 
-
-
 System Architecture
 ===================
 
@@ -38,23 +36,29 @@ Software Architecture
 
 Summary/Lessons Learned
 =======================
-* Python is great
-* Python has a built-in webserver
-* Both Python2 and Python3 are pre-installed on the Raspberry Pi
-* The Python2/Python3 schism still exists. Not all packages are available easily on Python3
-
-* RRDTool is great to store and graph log data
+* Python is great.
+* Python has a built-in webserver.
+* Both Python2 and Python3 are pre-installed on the Raspberry Pi.
+* The Python2/Python3 schism still exists. Not all packages are available easily on Python3.
+* RRDTool is great to store and graph log data.
 
 TO DO
 =====
-* Robustness against bad sensor data
+* Improve robustness against bad sensor data
+  * te923con *-iU* to generate "unknown" values for rrdtool
 * Dew point calculation
 
 
 Open Issues
 ===========
 * Internet Security: Is the python webserver vulnerable?
-* SD-Card lifetime: Store data on ramdisk/tmpfs?
+  * Solution: Disable port forwarding at router. FTP push static website to external server
+    * Only outgoing connection from Raspberry Pi. 
+	* FTP password must be stored on Raspberry Pi. Is this the next security risk?
+* SD-Card lifetime: 
+ * Store static website data on ramdisk/tmpfs?
+ * Separate code and data: store RRD database on USB flash drive instead on SD-Card with Raspbian OS.
+ * Reduce log files written on SD-Card by OS and services
 
 
 
