@@ -34,7 +34,7 @@ The system architecture is shown in the following deployment diagram.
   * Sensor data are stored in a RRD archives
   * Sensor data are made available via a web server
 * The Nexus TFA weather station 
-  * has a built-in DCF77 time receiver and a Temperature/Humidity sensor
+  * has a built-in DCF77 time receiver,  a Temperature/Humidity sensor and a barometric pressure sensor
   * receives Temperature/Humidity data from up to 5 external sensors via 433MHz RF
 * The DSL router 
   * makes the Raspberry Pi web server available to the internet via port forwarding
@@ -44,6 +44,28 @@ The system architecture is shown in the following deployment diagram.
 
 Software Architecture
 =====================
+
+
+Installation and Setup
+======================
+
+Raspberry Pi
+------------
+* Install raspbian image (2014-09-09-wheezy-raspbian.img) on 4GB SD-Card using WinDiskImager
+* Initial connect from Windows PC via putty-ssh (IP-adress assigned by router: 192.168.2.23)
+  * `sudo raspi-config`
+    * Timezone Berlin
+    * limit GPU memory to smallest value (1MB)
+    * Expand filesystem
+  * `passwd`
+    * change password
+  * get the [te923] (http://te923.fukz.org/) tool and [compile] (http://www.mrbalky.com/tag/te923/)
+    * `wget http://te923.fukz.org/downloads/te923tool-0.6.1.tgz`
+	* `tar -xvf te923tool-0.6.1.tgz`
+	* `cd te923tool-0.6.1`
+	* `sudo apt-get install libusb-dev`
+	* `make`
+	
 
 Summary/Lessons Learned
 =======================
@@ -62,7 +84,7 @@ Summary/Lessons Learned
 =====
 * Improve robustness against bad sensor data
   * te923con *-iU* to generate "unknown" values for rrdtool
-* Dew point calculation
+* Add dew point calculation to the python script
 
 
 :warning: Open Issues
@@ -72,20 +94,19 @@ Summary/Lessons Learned
     * Only outgoing connection from Raspberry Pi. 
 	* FTP password must be stored on Raspberry Pi. Is this the next security risk?
 * SD-Card lifetime: 
- * Store static website data on ramdisk/tmpfs?
- * Separate code and data: store RRD database on USB flash drive instead on SD-Card with Raspbian OS.
- * Reduce log files written on SD-Card by OS and services
-
+  * Store static website data on ramdisk/tmpfs?
+  * Separate code and data: store RRD database on USB flash drive instead on SD-Card with Raspbian OS.
+  * Reduce log files written on SD-Card by OS and services
+* Stability of RF sensor connection:
+  * Occasionally the connection between TFA Nexus and a remote sensor breaks for unknown reasons.
 
 
 XXXXXXXXXXXXXXXXXXXXXXXX
 ========================
 
-1.) 2014-09-09-wheezy-raspbian.img per WinDiskImager auf SD-Karte installiert.
 
-2.) IP Adresse = 192.168.2.23
-Login per putty-ssh (pi raspberry)
-sudo raspi-config ==> Timezone Berlin, 1MB memory für GPU, Expand filesystem
+
+
 
 3.) python3 (und python2) sind schon installiert
 sudo apt-get install python3-numpy ==> numpy offenbar auch schon installiert
@@ -94,17 +115,7 @@ sudo apt-get install python3-numpy ==> numpy offenbar auch schon installiert
 01.11.2014
 =============================
 
-4.) Passwort geändert
-passwd
 
-5.) te923 [1] compilieren [2]
-wget http://te923.fukz.org/downloads/te923tool-0.6.1.tgz
-tar -xvf te923tool-0.6.1.tgz
-cd te923tool-0.6.1
-sudo apt-get install libusb-dev
-make
-[5.1] http://te923.fukz.org/
-[5.2] http://www.mrbalky.com/tag/te923/
 
 
 6.) te923 aufrufen
