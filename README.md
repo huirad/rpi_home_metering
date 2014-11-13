@@ -81,7 +81,7 @@ Summary/Lessons Learned
 </ul>
 
 <ul>
-<li> Github provides a convenient way to share open source software including documentation ([markdown](github markdown))
+<li> Github provides a convenient way to share open source software including documentation ([markdown][github markdown])
 </ul>
 
 [github markdown]: https://help.github.com/articles/markdown-basics/
