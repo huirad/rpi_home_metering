@@ -76,7 +76,7 @@ Summary/Lessons Learned
 * Python is great.
 * Python has a built-in webserver.
 * Both Python2 and Python3 are pre-installed on the Raspberry Pi.
-* The Python2/Python3 schism still exists. E.g. not all packages are available easily on Python3.
+* The Python2/Python3 schism still exists, e.g. not all packages are available easily on Python3.
 
 * RRDTool is great to store and graph log data.
 
