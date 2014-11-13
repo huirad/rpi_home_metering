@@ -72,19 +72,17 @@ Raspberry Pi
 
 Summary/Lessons Learned
 =======================
-
+Python
 * Python is great.
 * Python has a built-in webserver.
 * Both Python2 and Python3 are pre-installed on the Raspberry Pi.
 * The Python2/Python3 schism still exists, e.g. not all packages are available easily on Python3.
 
-<!-- Separate Lists: https://pairlist6.pair.net/pipermail/markdown-discuss/2011-February/001900.html --> 
-
+RRDTools
 * RRDTool is great to store and graph log data.
 
-<!-- Dear Markdown: I want two lists. --> 
-
-* Github provides a convenient way to share open source software including [markdown][github markdown] documentation
+GitHub
+* GitHub provides a convenient way to share open source software including [markdown][github markdown] documentation
 
 [github markdown]: https://help.github.com/articles/markdown-basics/
 
