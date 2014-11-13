@@ -78,7 +78,7 @@ Summary/Lessons Learned
 * Both Python2 and Python3 are pre-installed on the Raspberry Pi.
 * The Python2/Python3 schism still exists, e.g. not all packages are available easily on Python3.
 
-<!-- Dear Markdown: I want two lists. --> 
+<!-- Separate Lists: https://pairlist6.pair.net/pipermail/markdown-discuss/2011-February/001900.html --> 
 
 * RRDTool is great to store and graph log data.
 
