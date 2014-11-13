@@ -83,11 +83,11 @@ Summary/Lessons Learned
 <li> RRDTool is great to store and graph log data.
 </ul>
 
-<ul>
-<li> Github provides a convenient way to share open source software including [markdown][aaa] documentation
-</ul>
 
-[aaa]: https://help.github.com/articles/markdown-basics/
+* Github provides a convenient way to share open source software including [markdown][github markdown] documentation
+
+
+[github markdown]: https://help.github.com/articles/markdown-basics/
 
 
 :construction: TO DO
