@@ -80,6 +80,13 @@ Summary/Lessons Learned
 <li> RRDTool is great to store and graph log data.
 </ul>
 
+<ul>
+<li> Github provides a convenient way to share open source software including documentation ([github markdown](markdown))
+</ul>
+
+[github markdown]: https://help.github.com/articles/markdown-basics/
+
+
 :construction: TO DO
 =====
 * Improve robustness against bad sensor data
@@ -90,7 +97,7 @@ Summary/Lessons Learned
 :warning: Open Issues
 ===========
 * Internet Security: Is the python webserver vulnerable?
-  * Solution: Disable port forwarding at router. FTP push static website to external server
+  * Solution: Disable port forwarding at router. FTP push static website to external server (ftp -u URL file).
     * Only outgoing connection from Raspberry Pi. 
 	* FTP password must be stored on Raspberry Pi. Is this the next security risk?
 * SD-Card lifetime: 
@@ -99,7 +106,9 @@ Summary/Lessons Learned
   * Reduce log files written on SD-Card by OS and services
 * Stability of RF sensor connection:
   * Occasionally the connection between TFA Nexus and a remote sensor breaks for unknown reasons.
-
+* Accuracy of humidity measurements: 
+  * Humidity readings of different sensors at the same place can spread significantly
+  * Recent example: One of the Nexus RF sensors measured 55% RH, the Conrad DL141TH measured 60% RH and the SHT 11 measured 65% RH.
 
 XXXXXXXXXXXXXXXXXXXXXXXX
 ========================
