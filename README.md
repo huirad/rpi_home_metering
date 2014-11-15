@@ -42,8 +42,13 @@ The system architecture is shown in the following deployment diagram.
 
 ![system architecture deployment][system architecture deployment]
 
+The following picture shows the hardware setup
+![hardware setup][hardware setup]
+
 
 [system architecture deployment]: https://raw.githubusercontent.com/huirad/rpi_home_metering/master/doc/SystemArchitecture_Deployment.png
+[hardware setup]: https://raw.githubusercontent.com/huirad/rpi_home_metering/master/doc/HW_Setup.png
+
 
 Software Architecture
 =====================
@@ -54,6 +59,7 @@ Installation and Setup
 
 Raspberry Pi
 ------------
+Basic Setup:
 * Install raspbian image (2014-09-09-wheezy-raspbian.img) on 4GB SD-Card using WinDiskImager
 * Initial connect from Windows PC via putty-ssh (IP-adress assigned by router: 192.168.2.23)
   * `sudo raspi-config`
@@ -62,13 +68,20 @@ Raspberry Pi
     * Expand filesystem
   * `passwd`
     * change password
-  * get the [te923] (http://te923.fukz.org/) tool and [compile] (http://www.mrbalky.com/tag/te923/)
-    * `wget http://te923.fukz.org/downloads/te923tool-0.6.1.tgz`
-	* `tar -xvf te923tool-0.6.1.tgz`
-	* `cd te923tool-0.6.1`
-	* `sudo apt-get install libusb-dev`
-	* `make`
-	
+
+TE923 tool:
+* Get the [te923] (http://te923.fukz.org/) tool and [compile] (http://www.mrbalky.com/tag/te923/)
+  * `wget http://te923.fukz.org/downloads/te923tool-0.6.1.tgz`
+  * `tar -xvf te923tool-0.6.1.tgz`
+  * `cd te923tool-0.6.1`
+  * `sudo apt-get install libusb-dev`
+  * `make`
+* Allow access to the USB HID device without root rights
+* Example output
+  * Access individual fields by filtering with awk
+    * `./te923con | awk -F: '{print $2}'`
+  * Convert time from epoch to local time - see [pochconverter] (http://www.epochconverter.com/)
+    * `date -d @\`./te923con | awk -F: '{print $1}'\``
 
 Summary/Lessons Learned
 =======================
@@ -110,6 +123,13 @@ GitHub
   * Humidity readings of different sensors at the same place can spread significantly
   * Recent example: One of the Nexus RF sensors measured 55% RH, the Conrad DL141TH measured 60% RH and the SHT 11 measured 65% RH.
 
+  
+References
+==========
+
+[power meter pulse counting]: http://openenergymonitor.org/emon/buildingblocks/introduction-to-pulse-counting  
+  
+  
 XXXXXXXXXXXXXXXXXXXXXXXX
 ========================
 
@@ -128,29 +148,27 @@ sudo apt-get install python3-numpy ==> numpy offenbar auch schon installiert
 
 
 6.) te923 aufrufen
-#funktioniert, aber nur als root
+funktioniert, aber nur als root
 sudo ./te923con 
 
-#udev Regel für Zugriff ohne root [6.1]
+udev Regel für Zugriff ohne root [6.1]
 sudo vi /etc/udev/rules.d/99-te923.rules
+´´´
 ATTRS{idVendor}=="1130", ATTRS{idProduct}=="6801", MODE="0660", GROUP="plugdev"
 sudo udevadm control --reload-rules
-#funktioniert aber erst nach reboot
-#das explizite entladen des usb-hid scheint nicht nötig zu sein
+´´´
+funktioniert aber erst nach reboot
+das explizite entladen des usb-hid scheint nicht nötig zu sein
 
-#Zugriff auf einzelne Felder, z.B. per awk
-./te923con | awk -F: '{print $2}'
 
-#Uhrzeit im Klartext: [6.2] python3 -m http.server
-date -d @`./te923con | awk -F: '{print $1}'`
 
 [6.1] http://www.mrbalky.com/2010/05/09/weather-station-fixing-the-bugs/
-[6.2] http://www.epochconverter.com/
+[6.2] 
 
 7.) Webserver, erster Gehversuch
 ./te923con > index.htm
 python3 -m http.server
-#dann Abfrage http://192.168.2.23:8000/
+dann Abfrage http://192.168.2.23:8000/
 
 TODO: Sinnvolle Aufbereitung und cronjob ==> http://www.kompf.de/weather/pionewire.html
 TODO: Fritzbox Port forwarding und Webserver automatisch starten
@@ -158,7 +176,7 @@ TODO: Fritzbox Port forwarding und Webserver automatisch starten
 8.) rrdtool installieren
 sudo apt-get install rrdtool
 sudo apt-get install python-rrdtool
-#http://www.kompf.de/weather/pionewire.html
+http://www.kompf.de/weather/pionewire.html
 
 http://oss.oetiker.ch/rrdtool/prog/rrdpython.en.html
 http://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html#GRAPH
@@ -167,12 +185,12 @@ http://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html#GRAPH
 
 
 9.) te923con per python auslesen
-#http://www.holzheizer-forum.de/wbb3/index.php?page=Thread&threadID=1053&pageNo=2
+http://www.holzheizer-forum.de/wbb3/index.php?page=Thread&threadID=1053&pageNo=2
 
 
 10.) crontab  ===> TODO: Fehlerausgabe in Datei umleiten
-#http://www.kompf.de/weather/pionewiremini.html
-#http://raspberrywebserver.com/serveradmin/run-a-script-on-start-up.html
+http://www.kompf.de/weather/pionewiremini.html
+http://raspberrywebserver.com/serveradmin/run-a-script-on-start-up.html
 http://www.instructables.com/id/Raspberry-Pi-Launch-Python-script-on-startup/4/?lang=de
 
 Jede Minute
