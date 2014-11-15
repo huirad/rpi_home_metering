@@ -1,13 +1,25 @@
-rrdtool create temperature.rrd --step 60 \
-DS:T_Buero:GAUGE:120:-40:80 \
-DS:T_Aussen:GAUGE:120:-40:80 \
-DS:T_Oben:GAUGE:120:-40:80 \
-RRA:AVERAGE:0.5:1:1440 \
-RRA:MIN:0.5:60:168 \
-RRA:MAX:0.5:60:168 \
-RRA:AVERAGE:0.5:60:168
+rrdtool create home_metering.rrd --step 900 \
+DS:T0:GAUGE:1800:-40:80 \
+DS:H0:GAUGE:1800:0:100 \
+DS:P0:GAUGE:1800:0:1500 \
+DS:T1:GAUGE:1800:-40:80 \
+DS:H1:GAUGE:1800:0:100 \
+DS:T5:GAUGE:1800:-40:80 \
+DS:H5:GAUGE:1800:0:100 \
+DS:TK:GAUGE:1800:-40:80 \
+DS:HK:GAUGE:1800:0:100 \
+RRA:AVERAGE:0.5:1:2976 \
+RRA:MIN:0.5:96:3650 \
+RRA:MAX:0.5:96:3650 \
+RRA:AVERAGE:0.5:96:3650 
 
-#Interval 60 sec = 1 min
-#Store raw data for 1440 min = 1 day
-#MIN/MAX/AVERAGE over 60 min = 1 hour, store 168 hours = 1 week
+#Interval 900 sec = 15 min
+#Data source
+#T0,H0,P0: Temperature, Humidity, Pressure from weather station
+#T1,H1: Temperature, Humidity from remote sensor on channel 1
+#T5,H5: Temperature, Humidity from remote sensor on channel 5
+#TK,HK: Temperature, Humidity from remote sensor from cellar
+#Store raw data for 2976*15min = 1 month
+#MIN/MAX/AVERAGE over 96*15 min = 1 day, store 3650 days = 10 years
+#===> resulting file size:  ca 1MB
 
