@@ -42,7 +42,7 @@ The system architecture is shown in the following deployment diagram.
 
 ![system architecture deployment][system architecture deployment]
 
-The following picture shows the hardware setup
+The following picture shows the main parts of the hardware setup
 ![hardware setup][hardware setup]
 
 
@@ -80,8 +80,8 @@ TE923 tool:
 * Example output
   * Access individual fields by filtering with awk
     * `./te923con | awk -F: '{print $2}'`
-  * Convert time from epoch to local time - see [pochconverter] (http://www.epochconverter.com/)
-    * `date -d @\`./te923con | awk -F: '{print $1}'\``
+  * Convert time from epoch to local time - see [epochconverter] (http://www.epochconverter.com/)
+    * ``date -d @\`./te923con | awk -F: '{print $1}'` ``
 
 Summary/Lessons Learned
 =======================
@@ -117,6 +117,8 @@ GitHub
   * Store static website data on ramdisk/tmpfs?
   * Separate code and data: store RRD database on USB flash drive instead on SD-Card with Raspbian OS.
   * Reduce log files written on SD-Card by OS and services
+  * Use larger SD-Card to allow better wear leveling
+  * See e.g. [here] (http://www.ideaheap.com/2013/07/stopping-sd-card-corruption-on-a-raspberry-pi/) or  [there](http://raspberrypi.stackexchange.com/questions/169/how-can-i-extend-the-life-of-my-sd-card)
 * Stability of RF sensor connection:
   * Occasionally the connection between TFA Nexus and a remote sensor breaks for unknown reasons.
 * Accuracy of humidity measurements: 
