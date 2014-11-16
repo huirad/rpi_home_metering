@@ -8,6 +8,7 @@ Introduction
 
 The following picture shows the main parts of the hardware setup
 ![hardware setup][hardware setup]
+[hardware setup]: https://raw.githubusercontent.com/huirad/rpi_home_metering/master/doc/HW_Setup.png
 
 Requirements
 ============
@@ -43,14 +44,30 @@ The system architecture is shown in the following deployment diagram.
   * provides its internet IP address to a dynamic DNS service to ease accessibility
 
 ![system architecture deployment][system architecture deployment]
-
-
 [system architecture deployment]: https://raw.githubusercontent.com/huirad/rpi_home_metering/master/doc/SystemArchitecture_Deployment.png
-[hardware setup]: https://raw.githubusercontent.com/huirad/rpi_home_metering/master/doc/HW_Setup.png
+
 
 
 Software Architecture
 =====================
+The software architecture is shown in the following diagram
+* The cron daemon 
+  * reads its configuration data from the crontab
+  * starts the python web server at reboot
+  * calls the python script hm__update.py each 15min
+* The python script [hm__update.py] (https://raw.githubusercontent.com/huirad/rpi_home_metering/master/src/hm__update.py)
+  * reads out the temperature/humidity data from the Nexus weather station by calling the te923con program
+  * updates the RRD database with the new data
+  * creates a static web page from current data and a time series plot from RRD data
+* The RRD database
+  * is created at system setup by the shell script [hm__rrd_create.sh] (https://raw.githubusercontent.com/huirad/rpi_home_metering/master/src/hm__rrd_create.sh)
+  * stores temperature/humidity data in a cyclic buffer
+  * automatically calculates minimum/maximum values
+* The python webserver
+  * provides the static web page and the time series plot to the outer world
+
+![software architecture][software architecture]
+[software architecture]: https://raw.githubusercontent.com/huirad/rpi_home_metering/master/doc/SoftwareArchitecture.png
 
 
 Installation and Setup
@@ -71,20 +88,38 @@ Basic Setup:
     * `python -V`
     * `python3 -V`
 
-TE923 tool:
+Compile the TE923 tool and configure USB HID access:
 * Get the [te923] (http://te923.fukz.org/) tool and [compile] (http://www.mrbalky.com/tag/te923/)
   * `wget http://te923.fukz.org/downloads/te923tool-0.6.1.tgz`
   * `tar -xvf te923tool-0.6.1.tgz`
   * `cd te923tool-0.6.1`
   * `sudo apt-get install libusb-dev`
   * `make`
-* Allow access to the USB HID device without root rights
+* Allow access to the USB HID device without root rights 
+  * [create udev rule] (http://www.mrbalky.com/2010/05/09/weather-station-fixing-the-bugs/)
+  * `sudo vi /etc/udev/rules.d/99-te923.rules`
+  * enter `ATTRS{idVendor}=="1130", ATTRS{idProduct}=="6801", MODE="0660", GROUP="plugdev"`
+  * `sudo reboot`
 * Example output
   * Access individual fields by filtering with awk
     * `./te923con | awk -F: '{print $2}'`
   * Convert time from epoch to local time - see [epochconverter] (http://www.epochconverter.com/)
     * ``date -d @\`./te923con | awk -F: '{print $1}'` ``
 
+Install rrdtool and the associated python package
+* `sudo apt-get install rrdtool`
+* `sudo apt-get install python-rrdtool`
+
+Configure the cron daemon to start the web server at reboot and to call the update script each 15min
+* `crontab -e`
+* enter
+  * `*/15 * * * * cd $HOME/weather;python hm__update.py > www/index.htm`
+  *`@reboot cd $HOME/weather/www;python3 -m http.server`
+* `sudo reboot`
+
+
+
+	
 Summary/Lessons Learned
 =======================
 Python
@@ -134,6 +169,7 @@ References
 * RRDTool
   * http://oss.oetiker.ch/rrdtool/prog/rrdpython.en.html
   * http://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html#GRAPH
+  * http://kompf.de/weather/technik.html
 * python  
   * web server
 * The [AVR web server by Guido Socher](http://tuxgraphics.org/electronics/200709/avr-webserver-sensirion-humidity-temperature.shtml)
@@ -152,27 +188,6 @@ References
 01.11.2014
 =============================
 
-
-
-
-6.) te923 aufrufen
-funktioniert, aber nur als root
-sudo ./te923con 
-
-udev Regel für Zugriff ohne root [6.1]
-sudo vi /etc/udev/rules.d/99-te923.rules
-´´´
-ATTRS{idVendor}=="1130", ATTRS{idProduct}=="6801", MODE="0660", GROUP="plugdev"
-sudo udevadm control --reload-rules
-´´´
-funktioniert aber erst nach reboot
-das explizite entladen des usb-hid scheint nicht nötig zu sein
-
-
-
-[6.1] http://www.mrbalky.com/2010/05/09/weather-station-fixing-the-bugs/
-[6.2] 
-
 7.) Webserver, erster Gehversuch
 ./te923con > index.htm
 python3 -m http.server
@@ -182,17 +197,11 @@ TODO: Sinnvolle Aufbereitung und cronjob ==> http://www.kompf.de/weather/pionewi
 TODO: Fritzbox Port forwarding und Webserver automatisch starten
 
 8.) rrdtool installieren
-sudo apt-get install rrdtool
-sudo apt-get install python-rrdtool
+
 http://www.kompf.de/weather/pionewire.html
 
 
 
-
-
-
-9.) te923con per python auslesen
-http://www.holzheizer-forum.de/wbb3/index.php?page=Thread&threadID=1053&pageNo=2
 
 
 10.) crontab  ===> TODO: Fehlerausgabe in Datei umleiten
@@ -200,11 +209,6 @@ http://www.kompf.de/weather/pionewiremini.html
 http://raspberrywebserver.com/serveradmin/run-a-script-on-start-up.html
 http://www.instructables.com/id/Raspberry-Pi-Launch-Python-script-on-startup/4/?lang=de
 
-Jede Minute
-echo '*/1 * * * * cd $HOME/weather;python nexus4912.py > index.htm' | crontab -
-
-Bei StartUp
-@reboot cd $HOME/weather;python3 -m http.server
 
 
 
