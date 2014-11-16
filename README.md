@@ -1,6 +1,6 @@
 Introduction
 ============
-This is my home metering (Temperature, Humidity, ...) project connecting a TFA Nexus weather station with a a Raspberry Pi.
+This is my home metering (Temperature, Humidity, ...) project connecting a TFA Nexus weather station with a Raspberry Pi.
 
 The following picture shows the main parts of the hardware setup
 ![hardware setup][hardware setup]
@@ -29,8 +29,8 @@ Personal Objectives
 System Architecture
 ===================
 The system architecture is shown in the following deployment diagram.
-* The Raspberry Pi collects Temperature and Humidity data from various sensors such as the TFA Nexus weather station
-  * Sensor data are stored in a RRD archives
+* The Raspberry Pi collects Temperature and Humidity data from various sensors, mainly from the TFA Nexus weather station
+  * Sensor data are stored in RRD (round robin database) archives
   * Sensor data are made available via a web server
 * The Nexus TFA weather station 
   * has a built-in DCF77 time receiver,  a Temperature/Humidity sensor and a barometric pressure sensor
@@ -120,7 +120,6 @@ Configure the cron daemon to start the web server at reboot and to call the upda
 * enter
   * `*/15 * * * * cd $HOME/weather;python hm__update.py > www/index.htm`
   * `@reboot cd $HOME/weather/www;python3 -m http.server`
-  * `@reboot cd $HOME/weather/www;python3 -m http.server`
 * `sudo reboot`
 
 
@@ -172,8 +171,10 @@ References
 * Weather station:
     * [TFA Nexus](http://wiki.wetterstationen.info/index.php?title=TFA-Dostmann_Nexus)
 	* [Hideki TE923](http://www.hidekielectronics.com/?m=6&p=2)
-* The [te923] (http://te923.fukz.org/) tool to read out data from the Nexus weather station* RRDTool
-  * http://oss.oetiker.ch/rrdtool/prog/rrdpython.en.html
+* The [te923] (http://te923.fukz.org/) tool to read out data from the Nexus weather station
+* [RRDTool](http://oss.oetiker.ch/rrdtool/)
+  * [... for beginners] (http://oss.oetiker.ch/rrdtool/tut/rrd-beginners.en.html)
+  * [... with python](http://oss.oetiker.ch/rrdtool/prog/rrdpython.en.html)
   * http://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html#GRAPH
   * http://kompf.de/weather/technik.html
 * python  
