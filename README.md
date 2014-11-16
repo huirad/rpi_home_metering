@@ -70,13 +70,13 @@ The software architecture is shown in the following diagram
 [software architecture]: https://raw.githubusercontent.com/huirad/rpi_home_metering/master/doc/SoftwareArchitecture.png
 
 
-Installation and Setup
-======================
+Installation and Setup of the Raspberry Pi
+==========================================
 
-Raspberry Pi
-------------
-Basic Setup:
+Basic Raspberry Pi Setup:
 * Install raspbian image (2014-09-09-wheezy-raspbian.img) on 4GB SD-Card using WinDiskImager
+* Connect Raspberry Pi to the network
+* Connect the Nexus weather station via USB to the Raspberry Pi
 * Initial connect from Windows PC via putty-ssh (IP-adress assigned by router: 192.168.2.23)
   * `sudo raspi-config`
     * Timezone Berlin
@@ -110,16 +110,22 @@ Install rrdtool and the associated python package
 * `sudo apt-get install rrdtool`
 * `sudo apt-get install python-rrdtool`
 
+Create the directory structure and deploy the scripts
+* `mkdir weather`
+* `cd weather`
+  * copy the scripts `hm__update.py` and `hm__rrd_create.sh` here
+  * create the RRD database by executing `./hm__rrd_create.sh`
+* `mkdir www`
+  * this directory is for the static web page and the time series plot
+
 Configure the cron daemon to start the web server at reboot and to call the update script each 15min
 * `crontab -e`
 * enter
   * `*/15 * * * * cd $HOME/weather;python hm__update.py > www/index.htm`
-  *`@reboot cd $HOME/weather/www;python3 -m http.server`
+  * `@reboot cd $HOME/weather/www;python3 -m http.server`
 * `sudo reboot`
 
 
-
-	
 Summary/Lessons Learned
 =======================
 Python
@@ -165,7 +171,7 @@ GitHub
   
 References
 ==========
-* The [te923] (http://te923.fukz.org/) tool to read out data from the Nexus weather station
+* The [te923 tool] (http://te923.fukz.org/) to read out data from the Nexus weather station
 * RRDTool
   * http://oss.oetiker.ch/rrdtool/prog/rrdpython.en.html
   * http://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html#GRAPH
