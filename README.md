@@ -128,6 +128,16 @@ GitHub
   
 References
 ==========
+* te923
+  
+
+* RRDTool
+  * http://oss.oetiker.ch/rrdtool/prog/rrdpython.en.html
+  * http://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html#GRAPH
+  
+* python  
+  * web server
+  
 
 [power meter pulse counting]: http://openenergymonitor.org/emon/buildingblocks/introduction-to-pulse-counting  
   
@@ -180,8 +190,7 @@ sudo apt-get install rrdtool
 sudo apt-get install python-rrdtool
 http://www.kompf.de/weather/pionewire.html
 
-http://oss.oetiker.ch/rrdtool/prog/rrdpython.en.html
-http://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html#GRAPH
+
 
 
 
