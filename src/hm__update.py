@@ -38,12 +38,10 @@ HK = "U"
 for line in urlopen('http://192.168.2.150/'):
     line = line.decode('latin_1').rstrip()  # Decoding the binary data to text.
     if 'Temperatur' in line: #expected output looks like "Temperatur   : 18.9°C"
-        print(line) 
         t = re.findall("([+-]?\d+.?\d+)",line)
         if len(t) > 0:
             TK = t[0].encode('latin_1')
     if 'Feuchte ' in line: #expected output looks like "Rel. Feuchte : 66%"
-        print(line) 
         t = re.findall("([+-]?\d+.?\d+)",line)
         if len(t) > 0:
             HK = t[0].encode('latin_1')
@@ -71,7 +69,7 @@ rrdtool.graph('www/temp_day.png',
               '--start', 'now -1 day',
               '--end', 'now',
               '--vertical-label', 'Temperatur [°C]',
-              '--title', 'Temperaturverlauf',
+              '--title', 'Temperatur 24h',
               'DEF:T0=home_metering.rrd:T0:AVERAGE',
               'LINE2:T0#00FF00:Innen',
               'VDEF:T0_last=T0,LAST',
