@@ -1,10 +1,6 @@
-rpi_home_metering
-=================
-
-Home Metering (Temperature, Humidity, ...) with Raspberry Pi or other Linux boxes
-
 Introduction
 ============
+This is my home metering (Temperature, Humidity, ...) project connecting a TFA Nexus weather station with a a Raspberry Pi.
 
 The following picture shows the main parts of the hardware setup
 ![hardware setup][hardware setup]
@@ -100,7 +96,8 @@ Compile the TE923 tool and configure USB HID access:
   * `sudo vi /etc/udev/rules.d/99-te923.rules`
   * enter `ATTRS{idVendor}=="1130", ATTRS{idProduct}=="6801", MODE="0660", GROUP="plugdev"`
   * `sudo reboot`
-* Example output
+* Example output: `1416078280:21.90:51:8.00:86:U:U:U:U:U:U:7.70:83:956.8:U:3:0:U:U:U:U:0`
+  * Colon-separated fields: timestamp, followed by temperature and humidity readings
   * Access individual fields by filtering with awk
     * `./te923con | awk -F: '{print $2}'`
   * Convert time from epoch to local time - see [epochconverter] (http://www.epochconverter.com/)
@@ -165,6 +162,9 @@ GitHub
   
 References
 ==========
+* Weather station:
+    * [TFA Nexus](http://wiki.wetterstationen.info/index.php?title=TFA-Dostmann_Nexus)
+	* [Hideki TE923](http://www.hidekielectronics.com/?m=6&p=2)
 * The [te923] (http://te923.fukz.org/) tool to read out data from the Nexus weather station
 * RRDTool
   * http://oss.oetiker.ch/rrdtool/prog/rrdpython.en.html
