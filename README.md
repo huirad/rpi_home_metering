@@ -6,6 +6,8 @@ Home Metering (Temperature, Humidity, ...) with Raspberry Pi or other Linux boxe
 Introduction
 ============
 
+The following picture shows the main parts of the hardware setup
+![hardware setup][hardware setup]
 
 Requirements
 ============
@@ -42,9 +44,6 @@ The system architecture is shown in the following deployment diagram.
 
 ![system architecture deployment][system architecture deployment]
 
-The following picture shows the main parts of the hardware setup
-![hardware setup][hardware setup]
-
 
 [system architecture deployment]: https://raw.githubusercontent.com/huirad/rpi_home_metering/master/doc/SystemArchitecture_Deployment.png
 [hardware setup]: https://raw.githubusercontent.com/huirad/rpi_home_metering/master/doc/HW_Setup.png
@@ -68,6 +67,9 @@ Basic Setup:
     * Expand filesystem
   * `passwd`
     * change password
+  * Optional: Verify that python and python3 are already installed
+    * `python -V`
+    * `python3 -V`
 
 TE923 tool:
 * Get the [te923] (http://te923.fukz.org/) tool and [compile] (http://www.mrbalky.com/tag/te923/)
@@ -128,29 +130,23 @@ GitHub
   
 References
 ==========
-* te923
-  
-
+* The [te923] (http://te923.fukz.org/) tool to read out data from the Nexus weather station
 * RRDTool
   * http://oss.oetiker.ch/rrdtool/prog/rrdpython.en.html
   * http://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html#GRAPH
-  
 * python  
   * web server
-  
+* The [AVR web server by Guido Socher](http://tuxgraphics.org/electronics/200709/avr-webserver-sensirion-humidity-temperature.shtml)
+* Alternative approaches to record weather data - mostly more sophisticated
+  * [fhem](http://fhem.de/fhem.html)
+  * [wviewweather](http://www.wviewweather.com/)
+  * [WeeWX](http://www.weewx.com/)
+
 
 [power meter pulse counting]: http://openenergymonitor.org/emon/buildingblocks/introduction-to-pulse-counting  
   
   
-XXXXXXXXXXXXXXXXXXXXXXXX
-========================
 
-
-
-
-
-3.) python3 (und python2) sind schon installiert
-sudo apt-get install python3-numpy ==> numpy offenbar auch schon installiert
 
 
 01.11.2014
