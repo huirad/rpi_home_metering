@@ -111,6 +111,7 @@ Create the directory structure and deploy the scripts
 * `mkdir weather`
 * `cd weather`
   * copy the scripts `hm__update.py` and `hm__rrd_create.sh` here
+  * copy the `te923con` exectuable here
   * create the RRD database by executing `./hm__rrd_create.sh`
 * `mkdir www`
   * this directory is for the static web page and the time series plot
@@ -171,6 +172,7 @@ References
 ==========
 * Weather station:
     * [TFA Nexus](http://wiki.wetterstationen.info/index.php?title=TFA-Dostmann_Nexus)
+	* [All TFA weather stations](http://tfa-dostmann.de/index.php?id=62)
 	* [Hideki TE923](http://www.hidekielectronics.com/?m=6&p=2)
 * The [te923] (http://te923.fukz.org/) tool to read out data from the Nexus weather station* RRDTool
   * http://oss.oetiker.ch/rrdtool/prog/rrdpython.en.html

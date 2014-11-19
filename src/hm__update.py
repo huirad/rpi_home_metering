@@ -52,10 +52,23 @@ Time = time.strftime("%H:%M:%S", time.localtime(float(epoch)))
 print("<title>{0}</title>".format(Time))
 print("{0}<BR>".format(DateTime))
 print("CH0: {0}&deg;C {1}%<BR>".format(T0, H0))
+print("FC:  {0}  | {1}mbar<BR>".format(FC, P0))
 print("CH1: {0}&deg;C {1}%<BR>".format(T1, H1))
 print("CH5: {0}&deg;C {1}%<BR>".format(T5, H5))
 print("CHK: {0}&deg;C {1}%<BR>".format(TK, HK))
-print('<img src="temp_day.png">')
+print('<BR><img src="temp_day.png">')
+print('<BR><img src="humi_day.png">')
+
+#TODO: decode forecast
+#0 - heavy snow
+#1 - little snow
+#2 - heavy rain
+#3 - little rain
+#4 - cloudy
+#5 - some clouds
+#6 - sunny
+
+
 
 #Update the RRD database and create graphs from the RRD data
 rrd_data = epoch+":"+T0+":"+H0+":"+P0+":"+T1+":"+H1+":"+T5+":"+H5+":"+TK+":"+HK
@@ -85,5 +98,30 @@ rrdtool.graph('www/temp_day.png',
               'DEF:TK=home_metering.rrd:TK:AVERAGE',
               'LINE2:TK#000000:Keller',
               'VDEF:TK_last=TK,LAST',
-              'GPRINT:TK_last:%.1lf °C'              
+              'GPRINT:TK_last:%.1lf °C'
+              )
+rrdtool.graph('www/humi_day.png',
+              '--imgformat', 'PNG',
+              '--width', '540',
+              '--height', '100',
+              '--start', 'now -1 day',
+              '--end', 'now',
+              '--vertical-label', 'Rel. Feuchte [%]',
+              '--title', 'Luftfeuchtigkeit 24h',
+              'DEF:H0=home_metering.rrd:H0:AVERAGE',
+              'LINE2:H0#00FF00:Innen',
+              'VDEF:H0_last=H0,LAST',
+              'GPRINT:H0_last:%.0lf %%',
+              'DEF:H1=home_metering.rrd:H1:AVERAGE',
+              'LINE2:H1#0000FF:Aussen',
+              'VDEF:H1_last=H1,LAST',
+              'GPRINT:H1_last:%.0lf %%',
+              'DEF:H5=home_metering.rrd:H5:AVERAGE',
+              'LINE2:H5#FF0000:Mal hier mal da',
+              'VDEF:H5_last=H5,LAST',
+              'GPRINT:H5_last:%.0lf %%',
+              'DEF:HK=home_metering.rrd:HK:AVERAGE',
+              'LINE2:HK#000000:Keller',
+              'VDEF:HK_last=HK,LAST',
+              'GPRINT:HK_last:%.0lf %%'
               )
