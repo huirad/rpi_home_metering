@@ -139,6 +139,7 @@ GitHub
 * GitHub provides a convenient way to share open source software including [markdown][github markdown] documentation
 
 [github markdown]: https://help.github.com/articles/markdown-basics/
+[notepad++ markdown]: https://github.com/Edditoria/markdown_npp_zenburn
 
 
 :construction: TO DO
@@ -146,6 +147,7 @@ GitHub
 * Improve robustness against bad sensor data
   * te923con *-iU* to generate "unknown" values for rrdtool
 * Add dew point calculation to the python script
+* Redirect error output from programs run by cron 
 
 
 :warning: Open Issues
@@ -179,9 +181,16 @@ References
   * [... with python](http://oss.oetiker.ch/rrdtool/prog/rrdpython.en.html)
   * http://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html#GRAPH
   * http://kompf.de/weather/technik.html
-* python  
-  * web server
+* Python  
+  * [web server](https://docs.python.org/3/library/http.server.html) `python3 -m http.server` 
+* [Crontab](http://linux.die.net/man/1/crontab)
+  * [run-a-script-on-start-up] (http://raspberrywebserver.com/serveradmin/run-a-script-on-start-up.html)
+  * [Launch-Python-script-on-startup] (http://www.instructables.com/id/Raspberry-Pi-Launch-Python-script-on-startup/4/?lang=de)
+
 * The [AVR web server by Guido Socher](http://tuxgraphics.org/electronics/200709/avr-webserver-sensirion-humidity-temperature.shtml)
+* Similar projects
+  * Martin Kompf: [DS1820 1-wire Temperature Sensor @ Raspberry Pi] (http://www.kompf.de/weather/pionewiremini.html)
+  * Charly Kuehnast: [DS1820 1-wire Temperature Sensor @ Raspberry Pi]  (http://kuehnast.com/s9y/archives/557-Raspberry-Pi-Temperaturfuehler-DS18B20-auslesen.html)
 * Alternative approaches to record weather data - mostly more sophisticated
   * [fhem](http://fhem.de/fhem.html)
   * [wviewweather](http://www.wviewweather.com/)
@@ -189,34 +198,11 @@ References
 
 
 [power meter pulse counting]: http://openenergymonitor.org/emon/buildingblocks/introduction-to-pulse-counting  
+[Luftraumueberwachung1]: http://kuehnast.com/s9y/archives/571-Luftraumueberwachung.html  
+[Luftraumueberwachung2]: http://www.raspberry-pi-geek.de/Magazin/2014/06/Luftraum-ueberwachen-mit-dem-Raspberry-Pi
   
-  
 
 
-
-01.11.2014
-=============================
-
-7.) Webserver, erster Gehversuch
-./te923con > index.htm
-python3 -m http.server
-dann Abfrage http://192.168.2.23:8000/
-
-TODO: Sinnvolle Aufbereitung und cronjob ==> http://www.kompf.de/weather/pionewire.html
-TODO: Fritzbox Port forwarding und Webserver automatisch starten
-
-8.) rrdtool installieren
-
-http://www.kompf.de/weather/pionewire.html
-
-
-
-
-
-10.) crontab  ===> TODO: Fehlerausgabe in Datei umleiten
-http://www.kompf.de/weather/pionewiremini.html
-http://raspberrywebserver.com/serveradmin/run-a-script-on-start-up.html
-http://www.instructables.com/id/Raspberry-Pi-Launch-Python-script-on-startup/4/?lang=de
 
 
 
