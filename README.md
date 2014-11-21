@@ -179,8 +179,8 @@ References
 * [RRDTool](http://oss.oetiker.ch/rrdtool/)
   * [... for beginners] (http://oss.oetiker.ch/rrdtool/tut/rrd-beginners.en.html)
   * [... with python](http://oss.oetiker.ch/rrdtool/prog/rrdpython.en.html)
-  * http://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html#GRAPH
-  * http://kompf.de/weather/technik.html
+  * [rrdgraph] (http://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html#GRAPH)
+  * [Intro by Martin Kompf] (http://kompf.de/weather/technik.html)
 * Python  
   * [web server](https://docs.python.org/3/library/http.server.html) `python3 -m http.server` 
 * The [crontab](http://linux.die.net/man/1/crontab) command
