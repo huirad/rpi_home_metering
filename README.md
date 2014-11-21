@@ -161,7 +161,7 @@ GitHub
   * Separate code and data: store RRD database on USB flash drive instead on SD-Card with Raspbian OS.
   * Reduce log files written on SD-Card by OS and services
   * Use larger SD-Card to allow better wear leveling
-  * See e.g. [here] (http://www.ideaheap.com/2013/07/stopping-sd-card-corruption-on-a-raspberry-pi/) or  [there](http://raspberrypi.stackexchange.com/questions/169/how-can-i-extend-the-life-of-my-sd-card)
+  * See e.g. [1] (http://www.ideaheap.com/2013/07/stopping-sd-card-corruption-on-a-raspberry-pi/) or  [2](http://raspberrypi.stackexchange.com/questions/169/how-can-i-extend-the-life-of-my-sd-card) or [3](http://www.zdnet.com/raspberry-pi-extending-the-life-of-the-sd-card-7000025556/)
 * Stability of RF sensor connection:
   * Occasionally the connection between TFA Nexus and a remote sensor breaks for unknown reasons.
 * Accuracy of humidity measurements: 
@@ -183,9 +183,9 @@ References
   * http://kompf.de/weather/technik.html
 * Python  
   * [web server](https://docs.python.org/3/library/http.server.html) `python3 -m http.server` 
-* [Crontab](http://linux.die.net/man/1/crontab) 
-  * [run-a-script-on-start-up] (http://raspberrywebserver.com/serveradmin/run-a-script-on-start-up.html)
-  * [Launch-Python-script-on-startup] (http://www.instructables.com/id/Raspberry-Pi-Launch-Python-script-on-startup/4/?lang=de)
+* The [crontab](http://linux.die.net/man/1/crontab) command
+  * Example 1: [run-a-script-on-start-up] (http://raspberrywebserver.com/serveradmin/run-a-script-on-start-up.html)
+  * Example 1: [Launch-Python-script-on-startup] (http://www.instructables.com/id/Raspberry-Pi-Launch-Python-script-on-startup/4/?lang=de)
 
 * The [AVR web server by Guido Socher](http://tuxgraphics.org/electronics/200709/avr-webserver-sensirion-humidity-temperature.shtml)
 * Similar projects
