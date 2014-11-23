@@ -35,16 +35,19 @@ FC = fields[15]      #Weather forecast
 #Read Temperature/Humidity data from the AVR webserver
 TK = "U"
 HK = "U"
-for line in urlopen('http://192.168.2.150/'):
-    line = line.decode('latin_1').rstrip()  # Decoding the binary data to text.
-    if 'Temperatur' in line: #expected output looks like "Temperatur   : 18.9°C"
-        t = re.findall("([+-]?\d+.?\d+)",line)
-        if len(t) > 0:
-            TK = t[0].encode('latin_1')
-    if 'Feuchte ' in line: #expected output looks like "Rel. Feuchte : 66%"
-        t = re.findall("([+-]?\d+.?\d+)",line)
-        if len(t) > 0:
-            HK = t[0].encode('latin_1')
+try:
+    for line in urlopen('http://192.168.2.150/'):
+        line = line.decode('latin_1').rstrip()  # Decoding the binary data to text.
+        if 'Temperatur' in line: #expected output looks like "Temperatur   : 18.9°C"
+            t = re.findall("([+-]?\d+.?\d+)",line)
+            if len(t) > 0:
+                TK = t[0].encode('latin_1')
+        if 'Feuchte ' in line: #expected output looks like "Rel. Feuchte : 66%"
+            t = re.findall("([+-]?\d+.?\d+)",line)
+            if len(t) > 0:
+                HK = t[0].encode('latin_1')
+except:
+    pass
 
 #Create HTML output
 DateTime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(float(epoch)))
