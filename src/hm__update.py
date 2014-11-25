@@ -61,6 +61,7 @@ print("CH5: {0}&deg;C {1}%<BR>".format(T5, H5))
 print("CHK: {0}&deg;C {1}%<BR>".format(TK, HK))
 print('<BR><img src="temp_day.png">')
 print('<BR><img src="humi_day.png">')
+print('<BR><img src="t1t51_minmax.png">')
 
 #TODO: decode forecast
 #0 - heavy snow
@@ -128,3 +129,20 @@ rrdtool.graph('www/humi_day.png',
               'VDEF:HK_last=HK,LAST',
               'GPRINT:HK_last:%.0lf %%'
               )
+rrdtool.graph('www/t1t51_minmax.png',
+              '--imgformat', 'PNG',
+              '--width', '540',
+              '--height', '100',
+              '--start', 'now -1 month',
+              '--end', 'now',
+              '--vertical-label', 'Temperatur [°C]',
+              '--title', 'Temperatur 1 Monat',
+              'DEF:T1MAX=home_metering.rrd:T1:MAX',
+              'LINE2:T1MAX#0000FF:T1MAX',
+              'DEF:T1MIN=home_metering.rrd:T1:MIN',
+              'LINE2:T1MIN#000080:T1MIN',
+              'DEF:T5MAX=home_metering.rrd:T5:MAX',
+              'LINE2:T5MAX#FF0000:T5MAX',
+              'DEF:T5MIN=home_metering.rrd:T5:MIN',
+              'LINE2:T5MIN#800000:T5MIN'
+              )              
