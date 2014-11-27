@@ -153,7 +153,8 @@ GitHub
 :warning: Open Issues
 ===========
 * Internet Security: Is the python webserver vulnerable?
-  * Solution: Disable port forwarding at router. FTP push static website to external server (ftp -u URL file).
+  * [Recent news] (http://www.sueddeutsche.de/digital/sicherheit-von-smart-home-offen-wie-ein-scheunentor-1.2227389)
+  * Solution?: Disable port forwarding at router. FTP push static website to external server (ftp -u URL file).
     * Only outgoing connection from Raspberry Pi. 
 	* FTP password must be stored on Raspberry Pi. Is this the next security risk?
 * Privacy
