@@ -153,7 +153,6 @@ GitHub
 :warning: Open Issues
 ===========
 * Internet Security: Is the python webserver vulnerable?
-  * [Recent news] (http://www.sueddeutsche.de/digital/sicherheit-von-smart-home-offen-wie-ein-scheunentor-1.2227389)
   * Solution?: Disable port forwarding at router. FTP push static website to external server (ftp -u URL file).
     * Only outgoing connection from Raspberry Pi. 
 	* FTP password must be stored on Raspberry Pi. Is this the next security risk?
@@ -202,10 +201,7 @@ References
 [power meter pulse counting]: http://openenergymonitor.org/emon/buildingblocks/introduction-to-pulse-counting  
 [Luftraumueberwachung1]: http://kuehnast.com/s9y/archives/571-Luftraumueberwachung.html  
 [Luftraumueberwachung2]: http://www.raspberry-pi-geek.de/Magazin/2014/06/Luftraum-ueberwachen-mit-dem-Raspberry-Pi
-  
-
-
-
+[Recent news]: http://www.sueddeutsche.de/digital/sicherheit-von-smart-home-offen-wie-ein-scheunentor-1.2227389
 
 
 
