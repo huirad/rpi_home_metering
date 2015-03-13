@@ -158,6 +158,8 @@ GitHub
     * Create graps with [google charts](http://phant.io/graphing/google/2014/07/07/graphing-data/).
     * Only outgoing connection from Raspberry Pi. 
 	* FTP password must be stored on Raspberry Pi. Is this the next security risk?
+* Privacy
+  * Can my life be spied out by analyzing those data?
 * SD-Card lifetime: 
   * Store static website data on ramdisk/tmpfs?
   * Separate code and data: store RRD database on USB flash drive instead on SD-Card with Raspbian OS.
@@ -188,7 +190,6 @@ References
 * The [crontab](http://linux.die.net/man/1/crontab) command
   * Example 1: [run-a-script-on-start-up] (http://raspberrywebserver.com/serveradmin/run-a-script-on-start-up.html)
   * Example 1: [Launch-Python-script-on-startup] (http://www.instructables.com/id/Raspberry-Pi-Launch-Python-script-on-startup/4/?lang=de)
-
 * The [AVR web server by Guido Socher](http://tuxgraphics.org/electronics/200709/avr-webserver-sensirion-humidity-temperature.shtml)
 * Similar projects
   * Martin Kompf: [DS1820 1-wire Temperature Sensor @ Raspberry Pi] (http://www.kompf.de/weather/pionewiremini.html)
@@ -202,10 +203,7 @@ References
 [power meter pulse counting]: http://openenergymonitor.org/emon/buildingblocks/introduction-to-pulse-counting  
 [Luftraumueberwachung1]: http://kuehnast.com/s9y/archives/571-Luftraumueberwachung.html  
 [Luftraumueberwachung2]: http://www.raspberry-pi-geek.de/Magazin/2014/06/Luftraum-ueberwachen-mit-dem-Raspberry-Pi
-  
-
-
-
+[Recent news]: http://www.sueddeutsche.de/digital/sicherheit-von-smart-home-offen-wie-ein-scheunentor-1.2227389
 
 
 
