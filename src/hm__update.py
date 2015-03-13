@@ -73,6 +73,27 @@ print('<BR><img src="t1t51_minmax.png">')
 #6 - sunny
 
 
+#push data to data.sparkfun.com
+try:
+    with open ('sparkfun_keys', 'r') as f:
+        public_key = f.readline().strip()
+        private_key = f.readline().strip()
+        url = 'http://data.sparkfun.com/input/'+public_key+'?private_key='+private_key
+        url = url + '&h0='+H0
+        url = url + '&t0='+T0
+        url = url + '&p0='+P0
+        url = url + '&h1='+H1
+        url = url + '&t1='+T1
+        url = url + '&h5='+H5
+        url = url + '&t5='+T5        
+        #print(url)
+        urlopen(url)
+except:
+    print('except')
+    pass
+
+
+
 
 #Update the RRD database and create graphs from the RRD data
 rrd_data = epoch+":"+T0+":"+H0+":"+P0+":"+T1+":"+H1+":"+T5+":"+H5+":"+TK+":"+HK

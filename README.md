@@ -153,7 +153,9 @@ GitHub
 :warning: Open Issues
 ===========
 * Internet Security: Is the python webserver vulnerable?
-  * Solution: Disable port forwarding at router. FTP push static website to external server (ftp -u URL file).
+  * Solution: Disable port forwarding at router. 
+    * Push data to external server, e.g. [data.sparkfun.com] (https://data.sparkfun.com/).
+    * Create graps with [google charts](http://phant.io/graphing/google/2014/07/07/graphing-data/).
     * Only outgoing connection from Raspberry Pi. 
 	* FTP password must be stored on Raspberry Pi. Is this the next security risk?
 * SD-Card lifetime: 
