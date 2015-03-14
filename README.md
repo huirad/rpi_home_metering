@@ -51,12 +51,12 @@ The software architecture is shown in the following diagram
   * reads its configuration data from the crontab
   * starts the python web server at reboot
   * calls the python script hm__update.py each 15min
-* The python script [hm__update.py] (https://raw.githubusercontent.com/huirad/rpi_home_metering/master/src/hm__update.py)
+* The python script [hm__update.py](https://raw.githubusercontent.com/huirad/rpi_home_metering/master/src/hm__update.py)
   * reads out the temperature/humidity data from the Nexus weather station by calling the te923con program
   * updates the RRD database with the new data
   * creates a static web page from current data and a time series plot from RRD data
 * The RRD database
-  * is created at system setup by the shell script [hm__rrd_create.sh] (https://raw.githubusercontent.com/huirad/rpi_home_metering/master/src/hm__rrd_create.sh)
+  * is created at system setup by the shell script [hm__rrd_create.sh](https://raw.githubusercontent.com/huirad/rpi_home_metering/master/src/hm__rrd_create.sh)
   * stores temperature/humidity data in a cyclic buffer
   * automatically calculates minimum/maximum values
 * The python webserver
@@ -85,14 +85,14 @@ Basic Raspberry Pi Setup:
     * `python3 -V`
 
 Compile the TE923 tool and configure USB HID access:
-* Get the [te923] (http://te923.fukz.org/) tool and [compile] (http://www.mrbalky.com/tag/te923/)
+* Get the [te923](http://te923.fukz.org/) tool and [compile](http://www.mrbalky.com/tag/te923/)
   * `wget http://te923.fukz.org/downloads/te923tool-0.6.1.tgz`
   * `tar -xvf te923tool-0.6.1.tgz`
   * `cd te923tool-0.6.1`
   * `sudo apt-get install libusb-dev`
   * `make`
 * Allow access to the USB HID device without root rights 
-  * [create udev rule] (http://www.mrbalky.com/2010/05/09/weather-station-fixing-the-bugs/)
+  * [create udev rule](http://www.mrbalky.com/2010/05/09/weather-station-fixing-the-bugs/)
   * `sudo vi /etc/udev/rules.d/99-te923.rules`
   * enter `ATTRS{idVendor}=="1130", ATTRS{idProduct}=="6801", MODE="0660", GROUP="plugdev"`
   * `sudo reboot`
@@ -100,7 +100,7 @@ Compile the TE923 tool and configure USB HID access:
   * Colon-separated fields: timestamp, followed by temperature and humidity readings
   * Access individual fields by filtering with awk
     * `./te923con | awk -F: '{print $2}'`
-  * Convert time from epoch to local time - see [epochconverter] (http://www.epochconverter.com/)
+  * Convert time from epoch to local time - see [epochconverter](http://www.epochconverter.com/)
     * ``date -d @\`./te923con | awk -F: '{print $1}'` ``
 
 Install rrdtool and the associated python package
@@ -154,7 +154,7 @@ GitHub
 ===========
 * Internet Security: Is the python webserver vulnerable?
   * Solution: Disable port forwarding at router. 
-    * Push data to external server, e.g. [data.sparkfun.com] (https://data.sparkfun.com/).
+    * Push data to external server, e.g. [data.sparkfun.com](https://data.sparkfun.com/).
     * Create graps with [google charts](http://phant.io/graphing/google/2014/07/07/graphing-data/).
     * Only outgoing connection from Raspberry Pi. 
 	* FTP password must be stored on Raspberry Pi. Is this the next security risk?
@@ -165,7 +165,7 @@ GitHub
   * Separate code and data: store RRD database on USB flash drive instead on SD-Card with Raspbian OS.
   * Reduce log files written on SD-Card by OS and services
   * Use larger SD-Card to allow better wear leveling
-  * See e.g. [1] (http://www.ideaheap.com/2013/07/stopping-sd-card-corruption-on-a-raspberry-pi/) or  [2](http://raspberrypi.stackexchange.com/questions/169/how-can-i-extend-the-life-of-my-sd-card) or [3](http://www.zdnet.com/raspberry-pi-extending-the-life-of-the-sd-card-7000025556/)
+  * See e.g. [1](http://www.ideaheap.com/2013/07/stopping-sd-card-corruption-on-a-raspberry-pi/) or  [2](http://raspberrypi.stackexchange.com/questions/169/how-can-i-extend-the-life-of-my-sd-card) or [3](http://www.zdnet.com/raspberry-pi-extending-the-life-of-the-sd-card-7000025556/)
 * Stability of RF sensor connection:
   * Occasionally the connection between TFA Nexus and a remote sensor breaks for unknown reasons.
 * Accuracy of humidity measurements: 
@@ -179,21 +179,21 @@ References
     * [TFA Nexus](http://wiki.wetterstationen.info/index.php?title=TFA-Dostmann_Nexus)
 	* [All TFA weather stations](http://tfa-dostmann.de/index.php?id=62)
 	* [Hideki TE923](http://www.hidekielectronics.com/?m=6&p=2)
-* The [te923] (http://te923.fukz.org/) tool to read out data from the Nexus weather station
+* The [te923](http://te923.fukz.org/) tool to read out data from the Nexus weather station
 * [RRDTool](http://oss.oetiker.ch/rrdtool/)
-  * [... for beginners] (http://oss.oetiker.ch/rrdtool/tut/rrd-beginners.en.html)
+  * [... for beginners](http://oss.oetiker.ch/rrdtool/tut/rrd-beginners.en.html)
   * [... with python](http://oss.oetiker.ch/rrdtool/prog/rrdpython.en.html)
-  * [rrdgraph] (http://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html#GRAPH)
-  * [Intro by Martin Kompf] (http://kompf.de/weather/technik.html)
+  * [rrdgraph](http://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html#GRAPH)
+  * [Intro by Martin Kompf](http://kompf.de/weather/technik.html)
 * Python  
   * [web server](https://docs.python.org/3/library/http.server.html) `python3 -m http.server` 
 * The [crontab](http://linux.die.net/man/1/crontab) command
-  * Example 1: [run-a-script-on-start-up] (http://raspberrywebserver.com/serveradmin/run-a-script-on-start-up.html)
-  * Example 1: [Launch-Python-script-on-startup] (http://www.instructables.com/id/Raspberry-Pi-Launch-Python-script-on-startup/4/?lang=de)
+  * Example 1: [run-a-script-on-start-up](http://raspberrywebserver.com/serveradmin/run-a-script-on-start-up.html)
+  * Example 1: [Launch-Python-script-on-startup](http://www.instructables.com/id/Raspberry-Pi-Launch-Python-script-on-startup/4/?lang=de)
 * The [AVR web server by Guido Socher](http://tuxgraphics.org/electronics/200709/avr-webserver-sensirion-humidity-temperature.shtml)
 * Similar projects
-  * Martin Kompf: [DS1820 1-wire Temperature Sensor @ Raspberry Pi] (http://www.kompf.de/weather/pionewiremini.html)
-  * Charly Kuehnast: [DS1820 1-wire Temperature Sensor @ Raspberry Pi]  (http://kuehnast.com/s9y/archives/557-Raspberry-Pi-Temperaturfuehler-DS18B20-auslesen.html)
+  * Martin Kompf: [DS1820 1-wire Temperature Sensor @ Raspberry Pi](http://www.kompf.de/weather/pionewiremini.html)
+  * Charly Kuehnast: [DS1820 1-wire Temperature Sensor @ Raspberry Pi](http://kuehnast.com/s9y/archives/557-Raspberry-Pi-Temperaturfuehler-DS18B20-auslesen.html)
 * Alternative approaches to record weather data - mostly more sophisticated
   * [fhem](http://fhem.de/fhem.html)
   * [wviewweather](http://www.wviewweather.com/)
