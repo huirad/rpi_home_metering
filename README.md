@@ -194,11 +194,34 @@ References
 * Similar projects
   * Martin Kompf: [DS1820 1-wire Temperature Sensor @ Raspberry Pi](http://www.kompf.de/weather/pionewiremini.html)
   * Charly Kuehnast: [DS1820 1-wire Temperature Sensor @ Raspberry Pi](http://kuehnast.com/s9y/archives/557-Raspberry-Pi-Temperaturfuehler-DS18B20-auslesen.html)
-  * Caution: newer Raspbian releases use the devicetree: See [1](https://www.raspiprojekt.de/anleitungen/schaltungen/9-1wire-mit-temperatursensor-ds18b20.html?showall=1&limitstart=), [2](http://www.raspberrypi.org/documentation/configuration/device-tree.md)
+
 * Alternative approaches to record weather data - mostly more sophisticated
   * [fhem](http://fhem.de/fhem.html)
   * [wviewweather](http://www.wviewweather.com/)
   * [WeeWX](http://www.weewx.com/)
+
+
+Connect a DS1820 1-wire tempeature sensor
+=========================================
+Connect the sensor using parasite power supply
+* Connect the GND and! the VDD pin of teh sensor to GND [these are the outer 2 pins]
+* Connect the DQ pin (the middle one) to GPIO4 (pin7) of the RPi
+* Add a 4.7kOhm resistor between 3.3V and GPIO4/DQ as pull-up
+* `sudo modprobe w1-gpio pullup=1`
+* `sudo modprobe w1-therm`
+* `cd /sys/bus/w1/devices`
+* `cd 10-00080*`
+* `cat w1_slave` # the second line contains the temperature - with 3 decimal digits
+
+You can automatically load the drivers by adding the to /etc/modules
+* `w1-gpio pullup=1`
+* `w1-therm`
+
+References
+* Martin Kompf: [DS1820 1-wire Temperature Sensor @ Raspberry Pi](http://www.kompf.de/weather/pionewiremini.html)
+* Caution: newer Raspbian releases use the devicetree: See [1](https://www.raspiprojekt.de/anleitungen/schaltungen/9-1wire-mit-temperatursensor-ds18b20.html?showall=1&limitstart=), [2](http://www.raspberrypi.org/documentation/configuration/device-tree.md)
+
+
 
 
 [power meter pulse counting]: http://openenergymonitor.org/emon/buildingblocks/introduction-to-pulse-counting  
