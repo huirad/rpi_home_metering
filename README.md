@@ -194,6 +194,7 @@ References
 * Similar projects
   * Martin Kompf: [DS1820 1-wire Temperature Sensor @ Raspberry Pi](http://www.kompf.de/weather/pionewiremini.html)
   * Charly Kuehnast: [DS1820 1-wire Temperature Sensor @ Raspberry Pi](http://kuehnast.com/s9y/archives/557-Raspberry-Pi-Temperaturfuehler-DS18B20-auslesen.html)
+  * Caution: newer Raspbian releases use the devicetree: See [1](https://www.raspiprojekt.de/anleitungen/schaltungen/9-1wire-mit-temperatursensor-ds18b20.html?showall=1&limitstart=), [2](http://www.raspberrypi.org/documentation/configuration/device-tree.md)
 * Alternative approaches to record weather data - mostly more sophisticated
   * [fhem](http://fhem.de/fhem.html)
   * [wviewweather](http://www.wviewweather.com/)
