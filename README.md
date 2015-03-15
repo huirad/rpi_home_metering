@@ -204,7 +204,7 @@ References
 Connect a DS1820 1-wire tempeature sensor
 =========================================
 Connect the sensor using parasite power supply
-* Connect the GND and! the VDD pin of teh sensor to GND [these are the outer 2 pins]
+* Connect the GND and! the VDD pin of the sensor to GND (these are the outer 2 pins)
 * Connect the DQ pin (the middle one) to GPIO4 (pin7) of the RPi
 * Add a 4.7kOhm resistor between 3.3V and GPIO4/DQ as pull-up
 * `sudo modprobe w1-gpio pullup=1`
