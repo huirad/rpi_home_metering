@@ -221,6 +221,7 @@ References
 * Martin Kompf: [DS1820 1-wire Temperature Sensor @ Raspberry Pi](http://www.kompf.de/weather/pionewiremini.html)
 * [Explanation of the w1_slave field](http://thepiandi.blogspot.de/2013/06/a-raspberry-pi-thermometer-interpreting.html)
 * Caution: newer Raspbian releases use the devicetree: See [1](https://www.raspiprojekt.de/anleitungen/schaltungen/9-1wire-mit-temperatursensor-ds18b20.html?showall=1&limitstart=), [2](http://www.raspberrypi.org/documentation/configuration/device-tree.md)
+* List of 1-wire devices in [/sys/devices/w1_bus_master1/w1_master_slaves](http://www.gtkdb.de/index_31_2040.html)
 
 
 
