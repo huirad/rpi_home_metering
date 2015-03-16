@@ -214,17 +214,22 @@ Connect the sensor using parasite power supply
 * `cat w1_slave` # the second line contains the temperature - with 3 decimal digits
 
 You can automatically load the drivers by adding the to /etc/modules
-* `w1-gpio pullup=1`
+* `w1-gpio pullup=1` 
+* # or `w1-gpio pullup=1 gpiopin=17` to use GPIO17 instead of GPIO4
 * `w1-therm`
+
+Note: I have not been able to use I2C when w1 was configured with parasite power (`pullup=1`). If I use w1 with separate power supply (no `pullup`), then I2C works. In some posts
+[1](https://github.com/raspberrypi/linux/issues/435)
+[2](http://www.forum-raspberrypi.de/Thread-i2c-i2c-1wire-und-kamera-gleichzeitig)
+[3](https://www.raspiprojekt.de/forum/sets-und-schaltungen/162-mpc23s17-mit-fhem-ansteuern-aber-wie.html?start=6)
+, it was proposed to change the order of drivers in `/etc/modules`, but this did not help for me.
+
 
 References
 * Martin Kompf: [DS1820 1-wire Temperature Sensor @ Raspberry Pi](http://www.kompf.de/weather/pionewiremini.html)
 * [Explanation of the w1_slave field](http://thepiandi.blogspot.de/2013/06/a-raspberry-pi-thermometer-interpreting.html)
 * Caution: newer Raspbian releases use the devicetree: See [1](https://www.raspiprojekt.de/anleitungen/schaltungen/9-1wire-mit-temperatursensor-ds18b20.html?showall=1&limitstart=), [2](http://www.raspberrypi.org/documentation/configuration/device-tree.md) or even better [2](http://www.fhemwiki.de/wiki/Raspberry_Pi_und_1-Wire#Software-Installation_ab_2015_bzw._Kernelversion_3.18.3)  [3](http://raspberrypi.stackexchange.com/questions/27073/firmware-3-18-x-breaks-i2c-spi-audio-lirc-1-wire-e-g-dev-i2c-1-no-such-f) [4](http://raspberry.tips/faq/raspberry-pi-device-tree-aenderung-mit-kernel-3-18-x-geraete-wieder-aktivieren/) [5](http://pi-buch.info/?p=344) [6](http://www.forum-raspberrypi.de/Thread-tutorial-geraetetreiber-und-device-tree-dt)
 * List of 1-wire devices in [/sys/devices/w1_bus_master1/w1_master_slaves](http://www.gtkdb.de/index_31_2040.html)
-* OPEN ISSUE: [Does 1-wire interfere with I2C](https://github.com/raspberrypi/linux/issues/435)? Try: load w1 before i2c!
-
-
 
 
 [power meter pulse counting]: http://openenergymonitor.org/emon/buildingblocks/introduction-to-pulse-counting  
