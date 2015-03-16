@@ -220,8 +220,9 @@ You can automatically load the drivers by adding the to /etc/modules
 References
 * Martin Kompf: [DS1820 1-wire Temperature Sensor @ Raspberry Pi](http://www.kompf.de/weather/pionewiremini.html)
 * [Explanation of the w1_slave field](http://thepiandi.blogspot.de/2013/06/a-raspberry-pi-thermometer-interpreting.html)
-* Caution: newer Raspbian releases use the devicetree: See [1](https://www.raspiprojekt.de/anleitungen/schaltungen/9-1wire-mit-temperatursensor-ds18b20.html?showall=1&limitstart=), [2](http://www.raspberrypi.org/documentation/configuration/device-tree.md)
+* Caution: newer Raspbian releases use the devicetree: See [1](https://www.raspiprojekt.de/anleitungen/schaltungen/9-1wire-mit-temperatursensor-ds18b20.html?showall=1&limitstart=), [2](http://www.raspberrypi.org/documentation/configuration/device-tree.md) or even better [2](http://www.fhemwiki.de/wiki/Raspberry_Pi_und_1-Wire#Software-Installation_ab_2015_bzw._Kernelversion_3.18.3)
 * List of 1-wire devices in [/sys/devices/w1_bus_master1/w1_master_slaves](http://www.gtkdb.de/index_31_2040.html)
+* OPEN ISSUE: Does 1-wire interfere with I2C????
 
 
 
