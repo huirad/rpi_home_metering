@@ -223,7 +223,7 @@ Note: I have not been able to use I2C when w1 was configured with parasite power
 [2](http://www.forum-raspberrypi.de/Thread-i2c-i2c-1wire-und-kamera-gleichzeitig)
 [3](https://www.raspiprojekt.de/forum/sets-und-schaltungen/162-mpc23s17-mit-fhem-ansteuern-aber-wie.html?start=6)
 , it was proposed to change the order of drivers in `/etc/modules`, but this did not help for me.
-Probably this has been resolved with the latest Raspbian release, see [commit a827a5619e72983159a152fd4943d9618c7a81a3](https://github.com/raspberrypi/linux/commit/a827a5619e72983159a152fd4943d9618c7a81a3)??
+Probably this has been resolved with the latest Raspbian release, see [commit a827a5619e72983159a152fd4943d9618c7a81a3](https://github.com/raspberrypi/linux/commit/a827a5619e72983159a152fd4943d9618c7a81a3)? See also [here](https://github.com/raspberrypi/firmware/issues/348)  and [here](http://www.raspberrypi.org/forums/viewtopic.php?p=684151#p684151)
 
 
 References
