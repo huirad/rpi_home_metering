@@ -14,6 +14,30 @@ import rrdtool
 from urllib import urlopen
 import re
 
+def dewpoint(t, rh):
+    """Calculate the dew point of water in air at normal pressure.
+
+    The dew point is calculated using the Magnus formula as
+    described in the english Wikipedia article or the Sensirion 
+    application notes. 
+    The Magnus parameter set from D. Sonntag is used.
+    
+    Parameters
+    ----------
+    t: float
+        Temperature in °C
+    rh: float
+        Relative Humidity in %
+        
+    Returns
+    -------
+    float
+        The dew point temperature in °C
+    """
+    h = (math.log10(rh)-2)/0.4343 + (17.62*t)/(243.12+t); 
+    dp    = 243.12*h/(17.62-h); # this is the dew point in °Celsius
+    return dp
+
 
 #Read current data from Nexus weather station 
 #  the option -iU ensures that invalid data are set to "U" as requried by rrdtool
@@ -35,6 +59,7 @@ FC = fields[15]      #Weather forecast
 #Read Temperature/Humidity data from the AVR webserver
 TK = "U"
 HK = "U"
+""" temporarily disable
 try:
     for line in urlopen('http://192.168.2.150/'):
         line = line.decode('latin_1').rstrip()  # Decoding the binary data to text.
@@ -48,16 +73,20 @@ try:
                 HK = t[0].encode('latin_1')
 except:
     pass
+"""    
 
 #Create HTML output
 DateTime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(float(epoch)))
 Time = time.strftime("%H:%M:%S", time.localtime(float(epoch)))
 print("<title>{0}</title>".format(Time))
 print("{0}<BR>".format(DateTime))
-print("CH0: {0}&deg;C {1}%<BR>".format(T0, H0))
+DP0 = dewpoint(float(T0), float(H0))
+print("CH0: {0}&deg;C {1}% [DP: {2:.1f}&deg;C]<BR>".format(T0, H0, DP0))
 print("FC:  {0}  | {1}mbar<BR>".format(FC, P0))
-print("CH1: {0}&deg;C {1}%<BR>".format(T1, H1))
-print("CH5: {0}&deg;C {1}%<BR>".format(T5, H5))
+DP1 = dewpoint(float(T1), float(H1))
+print("CH1: {0}&deg;C {1}% [DP: {2:.1f}&deg;C]<BR>".format(T1, H1, DP1))
+DP5 = dewpoint(float(T5), float(H5))
+print("CH5: {0}&deg;C {1}% [DP: {2:.1f}&deg;C]<BR>".format(T5, H5, DP5))
 print("CHK: {0}&deg;C {1}%<BR>".format(TK, HK))
 print('<BR><img src="temp_day.png">')
 print('<BR><img src="humi_day.png">')
