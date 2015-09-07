@@ -78,16 +78,31 @@ except:
 #Create HTML output
 DateTime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(float(epoch)))
 Time = time.strftime("%H:%M:%S", time.localtime(float(epoch)))
+try: 
+    DP0 = dewpoint(float(T0), float(H0))
+except:    
+    DP0 = 0.0
+try:
+    DP1 = dewpoint(float(T1), float(H1))
+except:
+    DP1 = 0.0
+try:
+    DP5 = dewpoint(float(T5), float(H5))
+except:
+    DP5 = 0.0
+try:
+    DPK = dewpoint(float(TK), float(HK))
+except:
+    DPK = 0.0
+
+    
 print("<title>{0}</title>".format(Time))
 print("{0}<BR>".format(DateTime))
-DP0 = dewpoint(float(T0), float(H0))
 print("CH0: {0}&deg;C {1}% [DP: {2:.1f}&deg;C]<BR>".format(T0, H0, DP0))
 print("FC:  {0}  | {1}mbar<BR>".format(FC, P0))
-DP1 = dewpoint(float(T1), float(H1))
 print("CH1: {0}&deg;C {1}% [DP: {2:.1f}&deg;C]<BR>".format(T1, H1, DP1))
-DP5 = dewpoint(float(T5), float(H5))
 print("CH5: {0}&deg;C {1}% [DP: {2:.1f}&deg;C]<BR>".format(T5, H5, DP5))
-print("CHK: {0}&deg;C {1}%<BR>".format(TK, HK))
+print("CHK: {0}&deg;C {1}% [DP: {2:.1f}&deg;C]<BR>".format(TK, HK, DPK))
 print('<BR><img src="temp_day.png">')
 print('<BR><img src="humi_day.png">')
 print('<BR><img src="t1t51_minmax.png">')
