@@ -3,6 +3,9 @@
 
 #python2 has to be used because only the rrdtool package for python2 is available
 #   by sudo apt-get install python-rrdtool
+#   TODO CHECK installation of rrdtool for python3 via pip3:
+#      sudo pip3 install rrdtool
+#
 #the coding has to be set to latin to allow use of the ° character
 
 
@@ -106,6 +109,10 @@ print("CHK: {0}&deg;C {1}% [DP: {2:.1f}&deg;C]<BR>".format(TK, HK, DPK))
 print('<BR><img src="temp_day.png">')
 print('<BR><img src="humi_day.png">')
 print('<BR><img src="t1t51_minmax.png">')
+print('<BR><img src="gc_day.png">')
+print('<BR><img src="gc_minmax.png">')
+
+
 
 #TODO: decode forecast
 #0 - heavy snow
