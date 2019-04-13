@@ -4,6 +4,7 @@ This is my home metering (Temperature, Humidity, ...) project connecting a TFA N
 
 The following picture shows the main parts of the hardware setup
 ![hardware setup][hardware setup]
+
 [hardware setup]: https://raw.githubusercontent.com/huirad/rpi_home_metering/master/doc/HW_Setup.png
 
 Requirements
@@ -39,8 +40,9 @@ The system architecture is shown in the following deployment diagram.
   * makes the Raspberry Pi web server available to the internet via port forwarding
   * provides its internet IP address to a dynamic DNS service to ease accessibility
 
-![system architecture deployment][system architecture deployment]
-[system architecture deployment]: https://raw.githubusercontent.com/huirad/rpi_home_metering/master/doc/SystemArchitecture_Deployment.png
+![system architecture deployment][system_architecture_deployment]
+
+[system_architecture_deployment]: https://raw.githubusercontent.com/huirad/rpi_home_metering/master/doc/SystemArchitecture_Deployment.png
 
 
 
@@ -63,6 +65,7 @@ The software architecture is shown in the following diagram
   * provides the static web page and the time series plot to the outer world
 
 ![software architecture][software architecture]
+
 [software architecture]: https://raw.githubusercontent.com/huirad/rpi_home_metering/master/doc/SoftwareArchitecture.png
 
 
@@ -121,6 +124,7 @@ Configure the cron daemon to start the web server at reboot and to call the upda
 * enter
   * `*/15 * * * * cd $HOME/weather;python hm__update.py > www/index.htm`
   * `@reboot cd $HOME/weather/www;python3 -m http.server`
+  * `*/01 * * * * cd $HOME/weather;python gc__update.py`
 * `sudo reboot`
 
 
