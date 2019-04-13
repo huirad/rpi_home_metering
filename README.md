@@ -219,7 +219,7 @@ Connect the sensor using parasite power supply
 
 You can automatically load the drivers by adding the to /etc/modules
 * `w1-gpio pullup=1` 
-* # or `w1-gpio pullup=1 gpiopin=17` to use GPIO17 instead of GPIO4
+* or `w1-gpio pullup=1 gpiopin=17` to use GPIO17 instead of GPIO4
 * `w1-therm`
 
 Note: I have not been able to use I2C when w1 was configured with parasite power (`pullup=1`). If I use w1 with separate power supply (no `pullup`), then I2C works. In some posts
