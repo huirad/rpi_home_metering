@@ -33,6 +33,7 @@ Some further recipies using mainly python to access the USB - HID:
 * [heinemml/CO2Meter](https://github.com/heinemml/CO2Meter) - straighforward; udev rule in README
 * [treitmayr/environment-monitor/co2-mini](https://gitlab.com/treitmayr/environment-monitor/tree/master/co2-mini) - very compact; udev-rule
 * [wooga](https://github.com/wooga/office_weather) derived from the [original hack](https://hackaday.io/project/5301-reverse-engineering-a-low-cost-usb-co-monitor/log/17909-all-your-base-are-belong-to-us)
+* [wreiner/officeweather](https://github.com/wreiner/officeweather) derived from wooga - using rrd
 * [nobodyinperson/co2monitor](https://gitlab.com/nobodyinperson/co2monitor) - [previously on github](https://github.com/nobodyinperson/co2monitor) - laaarge package
 * [dmage/co2mon](https://github.com/dmage/co2mon) - C program ; references: [revspace.nl::CO2MeterHacking](https://revspace.nl), [ru](https://habr.com/en/company/masterkit/blog/248403/)
 
