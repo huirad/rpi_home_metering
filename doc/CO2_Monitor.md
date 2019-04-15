@@ -21,7 +21,7 @@ The device has a USB port for power supply. But it can also be used to reread ou
 ## Software / Communication Protocol
 
 [Henyk Ploetz](https://github.com/henryk) made a great job of 
-[re-engineering](https://hackaday.io/project/5301-reverse-engineering-a-low-cost-usb-co-monitor)
+[re-engineering](https://hackaday.io/project/5301/logs?sort=oldest)
 the protcocol at the [USB interface](https://hackaday.io/project/5301-reverse-engineering-a-low-cost-usb-co-monitor/log/17909-all-your-base-are-belong-to-us). 
 
 
@@ -52,7 +52,10 @@ Documents/Datasheets on the CO2Mini
 * TFA: [Manual](https://clientmedia.trade-server.net/1768_tfadost/media/8/00/1800.pdf)
 * [Dostmann](https://dostmann-electronic.de/produkt/aircontrol-mini-co2-messgeraet.html?cid=6): [Manual](https://dostmann-electronic.de/produkt/aircontrol-mini-co2-messgeraet.html?cid=6)
 * CO2Monitor: [Manual](http://co2meters.com/Documentation/Manuals/Manual-RAD-0301.pdf) [Protocol](http://co2meters.com/Documentation/Other/AN_RAD_0301_USB_Communications_Revised8.pdf) [Sensor Calibration procedure](http://www.co2meters.com/Documentation/AppNotes/AN131-Calibration.pdf)
-* ZyAura: [ZGm05 Manual](http://www.zyaura.com/support/manual/pdf/ZyAura_CO2_Monitor_Carbon_Dioxide_ZGm053U%20English%20manual_1304.pdf) ; [ZyAura ZG01C Module Manual](http://www.zyaura.com/support/manual/pdf/ZyAura_CO2_Monitor_ZG01C_Module_ApplicationNote_141120.pdf)
+* ZyAura: [ZGm05 Manual](http://www.zyaura.com/support/manual/pdf/ZyAura_CO2_Monitor_Carbon_Dioxide_ZGm053U%20English%20manual_1304.pdf) ; 
+          [ZyAura ZG07 Module Manual!!](http://www.zyaura.com/support/manual/pdf/ZyAura_CO2_Monitor_Carbon_Dioxide_ZG07%20series%20Module%20English%20user%20manual_1710.pdf); 
+          [ZyAura ZG01C Module Manual](http://www.zyaura.com/support/manual/pdf/ZyAura_CO2_Monitor_ZG01C_Module_ApplicationNote_141120.pdf)
+          [ZyAura ZG09 Module Manual](http://www.zyaura.com/support/manual/pdf/ZyAura_CO2_Monitor_Carbon_Dioxide_ZG09%20English%20user%20manual_1808.pdf)
 
 
 Further Interesting Links :
