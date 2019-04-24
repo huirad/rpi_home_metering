@@ -62,9 +62,12 @@ Further Interesting Links :
 
 * [DWD:Klimagase](https://www.dwd.de/DE/forschung/atmosphaerenbeob/zusammensetzung_atmosphaere/spurengase/inh_nav/klimagase_node.html)
 * [ICOS Carbon Portal](https://www.icos-cp.eu/)
+* [NOAA Mauna Loa](https://www.esrl.noaa.gov/gmd/ccgg/trends/) - [full record](https://www.esrl.noaa.gov/gmd/ccgg/trends/full.html)
+* [UBA](https://www.umweltbundesamt.de/sites/default/files/medien/pdfs/kohlendioxid_2008.pdf), [Luft & Leistung](https://jufo.stmg.de/2017/LuftUndLeistung/LuftUndLeistung.pdf), [VDI](https://www.vdi.de/fileadmin/vdi_de/redakteur/bvs/bv_hamburg_dateien/VDI_Vortrag_2016_09_12_Thiel.pdf), [TUF](https://tu-freiberg.de/sites/default/files/media/institut-fuer-geologie-718/pdf/co2_facts.pdf)
 * ZyAura: [US: Air Code](http://www.zyaura.com/tutorial/regulation/Air%20Code.pdf)
 * [SenseAir: Indoor Air Quality and Safety](https://senseair.com/applications/indoor-air-quality/indoor-air-quality-and-safety/)
 * [SenseAir: CO2 Sensors](https://senseair.com/products?q=1331) - most are same as sold by [CO2Meter](https://www.co2meter.com/collections/co2-sensors) | [AN162](http://www.co2meters.com/Documentation/AppNotes/AN162-LP8-sensor-arduino-modbus-uart.pdf)
 * [CO2Meter CozIR](https://www.co2meter.com/products/cozir-ambient-10000-ppm-co2-sensor?variant=840094613524)
 * [Sensirion SCD30](https://www.sensirion.com/en/environmental-sensors/carbon-dioxide-sensors-co2/) 
 * [Comparison between SenseAir and Sensirion Sensor](https://presentations.copernicus.org/EMS2018-497_presentation.pdf)
+ 

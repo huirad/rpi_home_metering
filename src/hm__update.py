@@ -98,7 +98,7 @@ try:
 except:
     DPK = 0.0
 
-    
+
 print("<title>{0}</title>".format(Time))
 print("{0}<BR>".format(DateTime))
 print("CH0: {0}&deg;C {1}% [DP: {2:.1f}&deg;C]<BR>".format(T0, H0, DP0))
@@ -111,6 +111,8 @@ print('<BR><img src="humi_day.png">')
 print('<BR><img src="t1t51_minmax.png">')
 print('<BR><img src="gc_day.png">')
 print('<BR><img src="gc_minmax.png">')
+print('<BR><img src="co2_day.png">')
+print('<BR><img src="co2_minmax.png">')
 
 
 
@@ -122,28 +124,6 @@ print('<BR><img src="gc_minmax.png">')
 #4 - cloudy
 #5 - some clouds
 #6 - sunny
-
-
-#push data to data.sparkfun.com
-try:
-    with open ('sparkfun_keys', 'r') as f:
-        public_key = f.readline().strip()
-        private_key = f.readline().strip()
-        url = 'http://data.sparkfun.com/input/'+public_key+'?private_key='+private_key
-        url = url + '&h0='+H0
-        url = url + '&t0='+T0
-        url = url + '&p0='+P0
-        url = url + '&h1='+H1
-        url = url + '&t1='+T1
-        url = url + '&h5='+H5
-        url = url + '&t5='+T5        
-        #print(url)
-        urlopen(url)
-except:
-    print('except')
-    pass
-
-
 
 
 #Update the RRD database and create graphs from the RRD data
