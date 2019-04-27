@@ -53,9 +53,11 @@ epoch = fields[0]    #Timestamp in seconds since 01-Jan-1970 UTC
 T0 = fields[1]       #Temperature from weather station
 H0 = fields[2]       #Humidity from weather station
 T1 = fields[3]       #Temperature from remote sensor channel 1
-H1 = fields[4]       #Humidity from  remote sensor channel 1
+H1 = fields[4]       #Humidity from remote sensor channel 1
+T3 = fields[7]       #Temperature from remote sensor channel 3
+H3 = fields[8]       #Humidity from remote sensor channel 3
 T5 = fields[11]      #Temperature from remote sensor channel 5
-H5 = fields[12]      #Humidity from  remote sensor channel 5
+H5 = fields[12]      #Humidity from remote sensor channel 5
 P0 = fields[13]      #Barometric pressure in mbar
 FC = fields[15]      #Weather forecast
 
@@ -90,6 +92,10 @@ try:
 except:
     DP1 = 0.0
 try:
+    DP3 = dewpoint(float(T3), float(H3))
+except:
+    DP3 = 0.0
+try:
     DP5 = dewpoint(float(T5), float(H5))
 except:
     DP5 = 0.0
@@ -104,6 +110,7 @@ print("{0}<BR>".format(DateTime))
 print("CH0: {0}&deg;C {1}% [DP: {2:.1f}&deg;C]<BR>".format(T0, H0, DP0))
 print("FC:  {0}  | {1}mbar<BR>".format(FC, P0))
 print("CH1: {0}&deg;C {1}% [DP: {2:.1f}&deg;C]<BR>".format(T1, H1, DP1))
+print("CH3: {0}&deg;C {1}% [DP: {2:.1f}&deg;C]<BR>".format(T3, H3, DP3))
 print("CH5: {0}&deg;C {1}% [DP: {2:.1f}&deg;C]<BR>".format(T5, H5, DP5))
 print("CHK: {0}&deg;C {1}% [DP: {2:.1f}&deg;C]<BR>".format(TK, HK, DPK))
 print('<BR><img src="temp_day.png">')

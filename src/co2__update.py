@@ -34,7 +34,7 @@ def decrypt(key, data):
 
 if __name__ == "__main__":
 
-    fp = open("/dev/co2mini1", "a+b",  0)
+    fp = open("/dev/co2mini", "a+b",  0)
 
     HIDIOCSFEATURE_9 = 0xC0094806
     set_report = "\x00" + "".join(chr(e) for e in key)      #different or Python3 - see https://github.com/heinemml/CO2Meter
