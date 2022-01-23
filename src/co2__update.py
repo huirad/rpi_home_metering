@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 '''
 Read out the CO2-Monitor AIRCO2NTROL MINI       https://www.tfa-dostmann.de/produkt/co2-monitor-airco2ntrol-mini-31-5006/
@@ -37,17 +37,17 @@ if __name__ == "__main__":
     fp = open("/dev/co2mini", "a+b",  0)
 
     HIDIOCSFEATURE_9 = 0xC0094806
-    set_report = "\x00" + "".join(chr(e) for e in key)      #different or Python3 - see https://github.com/heinemml/CO2Meter
-    fcntl.ioctl(fp, HIDIOCSFEATURE_9, set_report)
+    set_report = [0] + key
+    fcntl.ioctl(fp, HIDIOCSFEATURE_9, bytearray(set_report))
 
     co2 = None
     temp = None
 
     while co2 is None or temp is None:
-        data = list(ord(e) for e in fp.read(8))             #different or Python3 - see https://github.com/heinemml/CO2Meter
+        data = list(fp.read(8))
         decrypted = decrypt(key, data)
         if decrypted[4] != 0x0d or (sum(decrypted[:3]) & 0xff) != decrypted[3]:
-            print hd(data), " => ", hd(decrypted),  "Checksum error"
+            print (data, " => ", decrypted,  "Checksum error")
         else:
             op = decrypted[0]
             val = decrypted[1] << 8 | decrypted[2]
@@ -57,7 +57,7 @@ if __name__ == "__main__":
             if op == 0x50:
                 co2 = val
             if co2 is not None and temp is not None:
-                print "%s\t%2.2f\t%4i" % (datetime.datetime.now().isoformat(), temp, co2)
+                print ("%s\t%2.2f\t%4i" % (datetime.datetime.now().isoformat(), temp, co2))
     epoch = time.time()
     rrd_data = "{0:d}:{1:d}".format(int(epoch), co2)
     print(rrd_data)
@@ -81,6 +81,7 @@ if __name__ == "__main__":
                   '--height', '100',
                   '--start', 'now -1 month',
                   '--end', 'now',
+                  '--step', '86400',
                   '--vertical-label', 'CO2 PPM',
                   '--title', 'CO2 PPM 1 Monat',
                   'DEF:CO2MAX=co2_ppm.rrd:CO2:MAX',

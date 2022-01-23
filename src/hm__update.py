@@ -1,11 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: latin-1 -*-
 
-#python2 has to be used because only the rrdtool package for python2 is available
-#   by sudo apt-get install python-rrdtool
-#   TODO CHECK installation of rrdtool for python3 via pip3:
-#      sudo pip3 install rrdtool
-#
 #the coding has to be set to latin to allow use of the ° character
 
 
@@ -13,38 +8,37 @@ import os
 import datetime
 import time
 import math
-import rrdtool  
-from urllib import urlopen
+import rrdtool
 import re
 
 def dewpoint(t, rh):
     """Calculate the dew point of water in air at normal pressure.
 
     The dew point is calculated using the Magnus formula as
-    described in the english Wikipedia article or the Sensirion 
-    application notes. 
+    described in the english Wikipedia article or the Sensirion
+    application notes.
     The Magnus parameter set from D. Sonntag is used.
-    
+
     Parameters
     ----------
     t: float
         Temperature in °C
     rh: float
         Relative Humidity in %
-        
+
     Returns
     -------
     float
         The dew point temperature in °C
     """
-    h = (math.log10(rh)-2)/0.4343 + (17.62*t)/(243.12+t); 
+    h = (math.log10(rh)-2)/0.4343 + (17.62*t)/(243.12+t);
     dp    = 243.12*h/(17.62-h); # this is the dew point in °Celsius
     return dp
 
 
-#Read current data from Nexus weather station 
+#Read current data from Nexus weather station
 #  the option -iU ensures that invalid data are set to "U" as requried by rrdtool
-te923con = os.popen("./te923con -iU")  
+te923con = os.popen("./te923con -iU")
 data = te923con.read()
 #expected output looks like "1416078280:21.90:51:8.00:86:U:U:U:U:U:U:7.70:83:956.8:U:3:0:U:U:U:U:0"
 data=data.strip()
@@ -61,31 +55,17 @@ H5 = fields[12]      #Humidity from remote sensor channel 5
 P0 = fields[13]      #Barometric pressure in mbar
 FC = fields[15]      #Weather forecast
 
-#Read Temperature/Humidity data from the AVR webserver
+#Cellar sensor
 TK = "U"
 HK = "U"
-""" temporarily disable
-try:
-    for line in urlopen('http://192.168.2.150/'):
-        line = line.decode('latin_1').rstrip()  # Decoding the binary data to text.
-        if 'Temperatur' in line: #expected output looks like "Temperatur   : 18.9°C"
-            t = re.findall("([+-]?\d+.?\d+)",line)
-            if len(t) > 0:
-                TK = t[0].encode('latin_1')
-        if 'Feuchte ' in line: #expected output looks like "Rel. Feuchte : 66%"
-            t = re.findall("([+-]?\d+.?\d+)",line)
-            if len(t) > 0:
-                HK = t[0].encode('latin_1')
-except:
-    pass
-"""    
+
 
 #Create HTML output
 DateTime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(float(epoch)))
 Time = time.strftime("%H:%M:%S", time.localtime(float(epoch)))
-try: 
+try:
     DP0 = dewpoint(float(T0), float(H0))
-except:    
+except:
     DP0 = 0.0
 try:
     DP1 = dewpoint(float(T1), float(H1))
@@ -104,7 +84,6 @@ try:
 except:
     DPK = 0.0
 
-
 print("<title>{0}</title>".format(Time))
 print("{0}<BR>".format(DateTime))
 print("CH0: {0}&deg;C {1}% [DP: {2:.1f}&deg;C]<BR>".format(T0, H0, DP0))
@@ -112,7 +91,6 @@ print("FC:  {0}  | {1}mbar<BR>".format(FC, P0))
 print("CH1: {0}&deg;C {1}% [DP: {2:.1f}&deg;C]<BR>".format(T1, H1, DP1))
 print("CH3: {0}&deg;C {1}% [DP: {2:.1f}&deg;C]<BR>".format(T3, H3, DP3))
 print("CH5: {0}&deg;C {1}% [DP: {2:.1f}&deg;C]<BR>".format(T5, H5, DP5))
-print("CHK: {0}&deg;C {1}% [DP: {2:.1f}&deg;C]<BR>".format(TK, HK, DPK))
 print('<BR><img src="temp_day.png">')
 print('<BR><img src="humi_day.png">')
 print('<BR><img src="t1t51_minmax.png">')
@@ -194,6 +172,7 @@ rrdtool.graph('www/t1t51_minmax.png',
               '--height', '100',
               '--start', 'now -1 month',
               '--end', 'now',
+              '--step', '86400',
               '--vertical-label', 'Temperatur [°C]',
               '--title', 'Temperatur 1 Monat',
               'DEF:T1MAX=home_metering.rrd:T1:MAX',
@@ -204,4 +183,4 @@ rrdtool.graph('www/t1t51_minmax.png',
               'LINE2:T5MAX#FF0000:T5MAX',
               'DEF:T5MIN=home_metering.rrd:T5:MIN',
               'LINE2:T5MIN#800000:T5MIN'
-              )              
+              )

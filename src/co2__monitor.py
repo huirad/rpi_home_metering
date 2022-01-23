@@ -36,18 +36,19 @@ if __name__ == "__main__":
     fp = open(sys.argv[1], "a+b",  0)
 
     HIDIOCSFEATURE_9 = 0xC0094806
-    set_report = "\x00" + "".join(chr(e) for e in key)      #different or Python3 - see https://github.com/heinemml/CO2Meter
-    fcntl.ioctl(fp, HIDIOCSFEATURE_9, set_report)
+    set_report =  [0] + key      #different or Python3 - see https://github.com/heinemml/CO2Meter
+    fcntl.ioctl(fp, HIDIOCSFEATURE_9, bytearray(set_report))
 
     co2 = None
     temp = None
     rh = None
 
     while True:
-        data = list(ord(e) for e in fp.read(8))             #different or Python3 - see https://github.com/heinemml/CO2Meter
+        data = list(fp.read(8))             #different or Python3 - see https://github.com/heinemml/CO2Meter
+        print(data)
         decrypted = decrypt(key, data)
         if decrypted[4] != 0x0d or (sum(decrypted[:3]) & 0xff) != decrypted[3]:
-            print hd(data), " => ", hd(decrypted),  "Checksum error"
+            print (data, " => ", decrypted,  "Checksum error")
         else:
             op = decrypted[0]
             val = decrypted[1] << 8 | decrypted[2]
@@ -59,7 +60,7 @@ if __name__ == "__main__":
             if op == 0x50:
                 co2 = val
             if co2 is not None and temp is not None:
-                print "%s\t%2.2f\t%4i" % (datetime.datetime.now().isoformat(), temp, co2)
+                print ("%s\t%2.2f\t%4i" % (datetime.datetime.now().isoformat(), temp, co2))
                 co2 = None
                 temp = None
                 rh = None
